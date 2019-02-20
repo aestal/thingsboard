@@ -1,5 +1,5 @@
 /**
- * Copyright © 2016-2018 The Thingsboard Authors
+ * Copyright © 2016-2019 The Thingsboard Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,15 +23,19 @@ import org.thingsboard.server.common.data.relation.EntitySearchDirection;
 public class TbCreateRelationNodeConfiguration extends TbAbstractRelationActionNodeConfiguration implements NodeConfiguration<TbCreateRelationNodeConfiguration> {
 
     private boolean createEntityIfNotExists;
+    private boolean changeOriginatorToRelatedEntity;
+    private boolean removeCurrentRelations;
 
     @Override
     public TbCreateRelationNodeConfiguration defaultConfiguration() {
         TbCreateRelationNodeConfiguration configuration = new TbCreateRelationNodeConfiguration();
         configuration.setDirection(EntitySearchDirection.FROM.name());
-        configuration.setRelationType("Contains");
+        configuration.setRelationTypePattern("Contains");
         configuration.setEntityNamePattern("");
         configuration.setEntityCacheExpiration(300);
         configuration.setCreateEntityIfNotExists(false);
+        configuration.setRemoveCurrentRelations(false);
+        configuration.setChangeOriginatorToRelatedEntity(false);
         return configuration;
     }
 }
